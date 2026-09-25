@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>裏千家茶道 正客の心得</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --washi:#f6f1e4;
+    --washi-deep:#efe7d3;
+    --ink:#2c2a24;
+    --tea:#4a5d3f;
+    --tea-deep:#33422c;
+    --seal:#9c3b2c;
+    --line:#d8cdae;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;
+    line-height:1.8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --washi:#1c1b17; --washi-deep:#26241d; --ink:#eae4d3; --tea:#8fae7c; --tea-deep:#b7d1a4; --seal:#d97a5f; --line:#3a3728;
+    }
+  }
+  :root[data-theme="dark"]{
+    --washi:#1c1b17; --washi-deep:#26241d; --ink:#eae4d3; --tea:#8fae7c; --tea-deep:#b7d1a4; --seal:#d97a5f; --line:#3a3728;
+  }
+
+  header{
+    padding:2.4rem 1.4rem 1.6rem;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  header .kana{
+    font-size:.78rem;
+    letter-spacing:.35em;
+    color:var(--tea);
+  }
+  header h1{
+    font-family:"Shippori Mincho",serif;
+    font-weight:700;
+    font-size:2rem;
+    margin:.3rem 0 .2rem;
+  }
+  header p{
+    margin:0;
+    color:var(--ink);
+    opacity:.72;
+    font-size:.92rem;
+  }
+
+  nav{
+    display:flex;
+    gap:.4rem;
+    overflow-x:auto;
+    padding:.9rem 1rem;
+    max-width:720px;
+    margin:0 auto;
+  }
+  nav button{
+    flex:0 0 auto;
+    font-family:"Shippori Mincho",serif;
+    font-size:.98rem;
+    padding:.55rem 1.05rem;
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  nav button.active{
+    background:var(--tea);
+    border-color:var(--tea);
+    color:var(--washi);
+  }
+  nav button:focus-visible{outline:2px solid var(--seal); outline-offset:2px;}
+  ruby rt{font-size:.5em; opacity:.7;}
+  header h1 .sub{display:block; margin-top:.15rem;}
+
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 1.2rem 3rem;
+  }
+  section{display:none;}
+  section.active{display:block;}
+
+  h2.section-title{
+    font-family:"Shippori Mincho",serif;
+    font-size:1.3rem;
+    margin:1.6rem 0 1rem;
+    padding-bottom:.4rem;
+    border-bottom:2px solid var(--tea);
+    display:inline-block;
+  }
+
+  .flow-step{
+    display:flex;
+    gap:1rem;
+    padding:1rem 0;
+    border-bottom:1px dashed var(--line);
+    cursor:pointer;
+  }
+  .flow-step .num{
+    font-family:"Shippori Mincho",serif;
+    color:var(--tea);
+    font-size:1.1rem;
+    flex:0 0 2.2rem;
+  }
+  .flow-step .flow-body{flex:1;}
+  .flow-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.6rem;
+  }
+  .flow-step h3{margin:0 0 .3rem; font-size:1.02rem;}
+  .flow-step p{margin:0; font-size:.9rem; opacity:.85;}
+  .flow-step .chevron{
+    color:var(--tea);
+    font-size:.85rem;
+    transition:transform .2s ease;
+    flex:0 0 auto;
+  }
+  .flow-step.open .chevron{transform:rotate(180deg);}
+  .flow-step:focus-visible{outline:2px solid var(--seal); outline-offset:4px;}
+
+  .flow-detail{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .25s ease;
+  }
+  .flow-step.open .flow-detail{grid-template-rows:1fr;}
+  .flow-detail-inner{
+    overflow:hidden;
+  }
+  .flow-detail ul{
+    margin:.7rem 0 0;
+    padding-left:1.1rem;
+    font-size:.86rem;
+    opacity:.9;
+  }
+  .flow-detail li{margin-bottom:.45rem;}
+  .flow-detail li:last-child{margin-bottom:0;}
+
+  .dialogue{
+    background:var(--washi-deep);
+    border-radius:14px;
+    padding:1.1rem 1.2rem;
+    margin:0 0 1rem;
+  }
+  .dialogue .who{
+    font-size:.78rem;
+    letter-spacing:.1em;
+    color:var(--tea);
+    margin-bottom:.25rem;
+    font-weight:500;
+  }
+  .dialogue .who.host{color:var(--seal);}
+  .dialogue .line{
+    font-family:"Shippori Mincho",serif;
+    font-size:1.05rem;
+    margin:0 0 .3rem;
+  }
+  .dialogue .note{
+    font-size:.82rem;
+    opacity:.75;
+    margin:0;
+  }
+  .dialogue + .dialogue{margin-top:.7rem;}
+
+  .callout{
+    border-left:3px solid var(--tea);
+    padding:.2rem 1rem;
+    font-size:.86rem;
+    opacity:.85;
+    margin:1.2rem 0;
+  }
+
+  .card{
+    background:var(--washi-deep);
+    border-radius:14px;
+    padding:1.3rem 1.3rem;
+    text-align:center;
+    cursor:pointer;
+    user-select:none;
+    min-height:120px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:.5rem;
+  }
+  .card .tag{font-size:.75rem; color:var(--tea); letter-spacing:.1em;}
+  .card .q{font-family:"Shippori Mincho",serif; font-size:1.15rem;}
+  .card .a{font-size:.92rem; opacity:.9; display:none;}
+  .card.flipped .a{display:block;}
+  .card .hint{font-size:.75rem; opacity:.5; margin-top:.4rem;}
+
+  .practice-nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:1rem;
+    font-size:.88rem;
+  }
+  .practice-nav button{
+    background:var(--tea);
+    color:var(--washi);
+    border:none;
+    border-radius:999px;
+    padding:.5rem 1.1rem;
+    cursor:pointer;
+    font-family:"Noto Sans JP",sans-serif;
+  }
+  .practice-nav button:disabled{opacity:.35; cursor:default;}
+  .progress{opacity:.6;}
+
+  .mei-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:.7rem;
+  }
+  .mei-card{
+    background:var(--washi-deep);
+    border-radius:10px;
+    padding:.8rem .9rem;
+  }
+  .mei-card .season{font-size:.75rem; color:var(--tea);}
+  .mei-card .names{font-family:"Shippori Mincho",serif; font-size:.95rem; margin-top:.5rem; line-height:2;}
+
+  .info-grid{
+    display:flex;
+    flex-direction:column;
+    gap:.7rem;
+  }
+  .info-card{
+    background:var(--washi-deep);
+    border-radius:12px;
+    padding:.9rem 1.1rem;
+  }
+  .info-card .name{
+    font-family:"Shippori Mincho",serif;
+    font-size:1.02rem;
+    margin-bottom:.25rem;
+  }
+  .info-card .name .kana2{
+    font-size:.75rem;
+    opacity:.6;
+    margin-left:.4rem;
+    font-family:"Noto Sans JP",sans-serif;
+  }
+  .info-card .desc{
+    font-size:.87rem;
+    opacity:.85;
+    margin:0;
+  }
+
+  footer{
+    text-align:center;
+    font-size:.78rem;
+    opacity:.5;
+    padding:1rem 1rem 2rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kana">うらせんけ ちゃどう</div>
+  <h1>裏千家茶道<span class="sub"><ruby>正客<rt>しょうきゃく</rt></ruby>の心得</span></h1>
+  <p>初めての方のための、客としての振る舞いと拝見の問答ガイド</p>
+</header>
+
+<nav id="tabs">
+  <button data-tab="flow" class="active">基本の流れ</button>
+  <button data-tab="mondo">拝見の問答</button>
+  <button data-tab="practice">問答練習</button>
+  <button data-tab="mei"><ruby>茶杓<rt>ちゃしゃく</rt></ruby>の銘</button>
+  <button data-tab="nuri">問答の参考</button>
+</nav>
+
+<main>
+
+  <section id="flow" class="active">
+    <h2 class="section-title">お茶を頂くまでの流れ（薄茶）</h2>
+    <p class="callout">それぞれの項目をタップすると、具体的な手の動きが開きます。</p>
+
+    <div class="flow-step" tabindex="0" role="button" aria-expanded="false">
+      <div class="num">一</div>
+      <div class="flow-body">
+        <div class="flow-head">
+          <h3>席入り・ご挨拶</h3>
+          <span class="chevron">▾</span>
+        </div>
+        <p>茶室に入り、床の間の掛物やお花を拝見してから席に着きます。</p>
+        <div class="flow-detail"><div class="flow-detail-inner"><ul>
+          <li>にじり口や襖の前でいったん止まり、一礼してから入ります。</li>
+          <li>扇子は要（かなめ）を自分の方に向けて膝前に置き、一礼します。</li>
+          <li>床の間の前では扇子を前に置いて両手をつき、掛物にじっくり一礼して拝見します。花や香合が飾ってあれば同様に拝見します。</li>
+          <li>下座（入口に近い側）から順に詰めて座り、正客から順番に席に着きます。</li>
+        </ul></div></div>
+      </div>
+    </div>
+
+    <div class="flow-step" tabindex="0" role="button" aria-expanded="false">
+      <div class="num">二</div>
+      <div class="flow-body">
+        <div class="flow-head">
+          <h3>お菓子を頂く</h3>
+          <span class="chevron">▾</span>
+        </div>
+        <p>亭主からお菓子が出されたら、次客への挨拶をしてから頂きます。</p>
+        <div class="flow-detail"><div class="flow-detail-inner"><ul>
+          <li>菓子鉢が運ばれてきたら、一礼して受け取ります。「お菓子をどうぞ」という声かけは特にありません。</li>
+          <li>取る前に、次客に対して「お先に」と会釈します（お先に頂きますという意味の挨拶です）。</li>
+          <li>自分の懐紙（持参したもの）を懐から取り出し、膝前に置きます。</li>
+          <li>黒文字（菓子に添えられた楊枝）でひと口大に切り分けていただきます。</li>
+          <li>お菓子は、お茶が点てられて出される前に食べ終えるのがマナーです。お茶をおいしく頂くための甘みという位置づけなので、お茶より先に済ませておきます。</li>
+          <li>黒文字は使い終えたら懐紙で拭い、懐紙に挟むか持ち帰ります。</li>
+          <li>菓子鉢は「お先に」と一礼してから次客へ送ります。</li>
+        </ul></div></div>
+      </div>
+    </div>
+
+    <div class="flow-step" tabindex="0" role="button" aria-expanded="false">
+      <div class="num">三</div>
+      <div class="flow-body">
+        <div class="flow-head">
+          <h3>お茶を頂く</h3>
+          <span class="chevron">▾</span>
+        </div>
+        <p>「お点前頂戴いたします」と一礼してから、正面を避けて頂きます。</p>
+        <div class="flow-detail"><div class="flow-detail-inner"><ul>
+          <li>茶碗が畳の縁外に置かれたら、隣客に「お先に」と会釈します。</li>
+          <li>両手で茶碗を取り、右手を添えながら左手のひらに乗せます。</li>
+          <li>「お点前頂戴いたします」と亭主に一礼します。</li>
+          <li>右手で茶碗を時計回りに二回（約90度）回し、絵柄や見どころのある正面を避けます。</li>
+          <li>三口半くらいで飲み、最後は軽く吸い切る音を立てて飲み終えた合図をします。</li>
+          <li>右手の親指と人差し指で飲み口を軽く拭い、その指を懐紙で拭います。</li>
+        </ul></div></div>
+      </div>
+    </div>
+
+    <div class="flow-step" tabindex="0" role="button" aria-expanded="false">
+      <div class="num">四</div>
+      <div class="flow-body">
+        <div class="flow-head">
+          <h3>茶碗を拝見する</h3>
+          <span class="chevron">▾</span>
+        </div>
+        <p>飲み終えたら茶碗を正面へ戻し、形や景色をじっくりと拝見します。</p>
+        <div class="flow-detail"><div class="flow-detail-inner"><ul>
+          <li>茶碗を反時計回りに二回ほど回して、正面（絵柄側）を自分の方に戻します。</li>
+          <li>畳の上に置いたまま、両手で軽く持ち上げて低い位置で形・色合い・高台（底の部分）などを眺めます。</li>
+          <li>亭主が下げに来たら「大変結構なお服加減でございました」など、感謝の言葉を伝えます。</li>
+        </ul></div></div>
+      </div>
+    </div>
+
+    <div class="flow-step" tabindex="0" role="button" aria-expanded="false">
+      <div class="num">五</div>
+      <div class="flow-body">
+        <div class="flow-head">
+          <h3>道具の拝見をお願いする</h3>
+          <span class="chevron">▾</span>
+        </div>
+        <p>全員が飲み終えたら、正客が棗と茶杓の拝見を願います。</p>
+        <div class="flow-detail"><div class="flow-detail-inner"><ul>
+          <li>正客が亭主に「どうぞ、お棗、お茶杓の拝見を」と願い出ます。</li>
+          <li>亭主が棗と茶杓を拝見用に出したら、両手で押しいただくように受け取ります。</li>
+          <li>順に隣へ送りながら、姿・塗り・形を静かに拝見します。</li>
+          <li>詳しいやり取りは「拝見の問答」のタブにまとめています。</li>
+        </ul></div></div>
+      </div>
+    </div>
+
+    <p class="callout">流派やお稽古先によって細部の作法は異なります。ここでは一般的な流れをまとめていますので、実際のお稽古では先生の指導を優先してくださいね。</p>
+  </section>
+
+  <section id="mondo">
+    <h2 class="section-title">拝見の問答（薄茶）</h2>
+    <p class="callout">お茶を頂いたあと、正客が亭主に道具について尋ねる、一連のやりとりです。順番と決まり文句を覚えておくと、お茶会でも落ち着いて臨めます。</p>
+    <p class="callout">
+      なぜ拝見するのが棗と茶杓なのかというと、この二つがその日のもてなしの心が一番濃く表れる道具だからです。棗はお茶を入れる容器、茶杓はそのお茶をすくう道具で、どちらも亭主が「今日はこれを使おう」と選んだり、自ら削ったり、銘を付けたりします。茶碗はすでに飲んだ後で間近に眺めているので（「茶碗を拝見する」の項目）、改めて拝見に出すのは、まだ間近で見ていない棗と茶杓、ということになります。棗と茶杓は軽くて小さく、客の手から手へ回して拝見できるという実用的な理由もあります。
+    </p>
+    <p class="callout">
+      なお、これは薄茶の場合です。濃茶の点前では棗の代わりに「茶入・仕覆（しふく）」が拝見の対象になり、「お茶入のお形は？」「御仕覆の御裂地は？」といった問答が続きます。薄茶では棗と茶杓の2点に絞られているぶん、初心者にも覚えやすい形になっています。
+    </p>
+
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby></div>
+      <p class="line">「どうぞ、お棗、お茶杓の拝見を。」</p>
+      <p class="note">亭主が棗と茶杓を清め終え、しまおうとするタイミングを見計らって、正客が声をかけます。飲み終えてすぐではなく、亭主の片づけの動きを見てから声をかけるのがポイントです。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who host">亭主</div>
+      <p class="line">（無言で一礼）</p>
+      <p class="note">亭主は言葉を返さず、静かに一礼するだけのことが多いです。そのまま棗と茶杓を畳の縁内（正客との間あたり）に置いて拝見に出し、一礼してから水屋へ下がります。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby>ほか</div>
+      <p class="line">（棗・茶杓を順に回して拝見）</p>
+      <p class="note">両手で押しいただき、姿・塗り・形などを静かに眺めます。見終えたら次の客へ送ります。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby></div>
+      <p class="line">「お棗のお塗りは？」</p>
+      <p class="note">全員が棗・茶杓の拝見を終え、道具が正客の手元まで戻ってきたところで、亭主が茶道口に戻って着座するのを待ちます。亭主が座り、一礼したのを確認してから、正客が最初の問いを口にします。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who host">亭主</div>
+      <p class="line">「〇〇でございます。」</p>
+      <p class="note">塗師の名や塗りの種類（例：真塗、蒔絵など）を答えます。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby></div>
+      <p class="line">「お茶杓の御作は？」</p>
+      <p class="note">茶杓を作った方（作者）を尋ねます。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who host">亭主</div>
+      <p class="line">「〇〇でございます。」</p>
+      <p class="note">作者名（先生ご自身の場合は「自作でございます」など）を答えます。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby></div>
+      <p class="line">「御銘は？」</p>
+      <p class="note">茶杓につけられた銘（季節にちなんだ名前）を尋ねます。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who host">亭主</div>
+      <p class="line">「〇〇と申します。」</p>
+      <p class="note">季節や趣向に合わせた銘を答えます（例：春なら「若草」など）。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby></div>
+      <p class="line">「お詰めは？」</p>
+      <p class="note">お茶（お詰め）の茶銘や茶舗を尋ねます。省略される場合もあります。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who host">亭主</div>
+      <p class="line">「〇〇園の〇〇でございます。」</p>
+      <p class="note">茶舗名とお茶の銘柄を答えます。</p>
+    </div>
+    <div class="dialogue">
+      <div class="who"><ruby>正客<rt>しょうきゃく</rt></ruby></div>
+      <p class="line">「結構なお道具を拝見させていただき、ありがとうございました。」</p>
+      <p class="note">拝見を終えたら丁寧にお礼を述べ、道具を返します。</p>
+    </div>
+  </section>
+
+  <section id="practice">
+    <h2 class="section-title">問答練習</h2>
+    <p class="callout">カードをタップすると、亭主の返答例が表示されます。「次へ」で問答の順番どおりに練習できます。</p>
+    <div id="cardWrap"></div>
+    <div class="practice-nav">
+      <button id="prevBtn">← 前へ</button>
+      <span class="progress" id="progressLabel"></span>
+      <button id="nextBtn">次へ →</button>
+    </div>
+  </section>
+
+  <section id="mei">
+    <h2 class="section-title">季節の<ruby>茶杓<rt>ちゃしゃく</rt></ruby>の銘（例）</h2>
+    <p class="callout">銘は亭主がその日の趣向で選ぶもので、決まったものではありません。練習の参考にどうぞ。</p>
+    <div class="mei-grid" id="meiGrid"></div>
+
+    <h2 class="section-title" style="margin-top:2.2rem;"><ruby>茶杓<rt>ちゃしゃく</rt></ruby>の銘とは</h2>
+    <p class="callout">
+      銘（めい）とは、茶杓につけられた名前のことです。和歌や禅語、季節の情景などから、亭主（またはその茶杓を作った人）が茶杓一本一本に名付けます。名付けられると、その茶杓固有の名前として、基本的にはずっと変わりません。絵画にタイトルが付いているのと似ています。
+    </p>
+    <p class="callout">
+      では、上のリストのように「決まったものではない」とはどういうことかというと、変わるのは銘そのものではなく、「その日、亭主がどの茶杓を選ぶか」「新しく削った茶杓に何という銘をつけるか」という部分です。亭主はお茶会のたびに、季節や趣向に合わせて茶杓を選んだり、自ら削った茶杓に新しい銘を名付けたりします。ですから同じ「御銘は？」という問いでも、茶会によって答えが違ってくるのです。季節感を大切にするのは、茶の湯全体がその日・その時にしかない一期一会を大切にする文化だからです。
+    </p>
+    <p class="callout">
+      すでに銘のついた茶杓の場合はどうかというと、千利休など名のある方が削った茶杓には、たいてい既に固有の銘がついています。この場合、亭主はその銘をそのまま「御銘は？」の答えとして伝えます。持ち主が気分でその日ごとに呼び名を変えることは基本的にありません。銘が変わり得るのは、まだ銘のついていない茶杓――たとえば亭主自身が新しく削った「自作」の茶杓――を使うときで、そのときに初めて、その日の季節や趣向にちなんだ銘を亭主が名付けます。つまり「季節で名付けられる」のは、名付け親としての亭主が、無銘の茶杓に初めて名前を与える場面のことなのです。
+    </p>
+  </section>
+
+  <section id="nuri">
+    <h2 class="section-title">棗の塗りの種類</h2>
+    <p class="callout">「お棗のお塗りは？」と聞かれたときに答えとして出てくることが多い、代表的な塗りの名前です。</p>
+    <div class="info-grid" id="nuriGrid"></div>
+
+    <h2 class="section-title" style="margin-top:2.2rem;"><ruby>茶杓<rt>ちゃしゃく</rt></ruby>の主な作者</h2>
+    <p class="callout">「お茶杓の御作は？」の答えとして出てくることが多い名前です。実際には、お稽古の先生ご自身が削られた「自作」であることもよくあります。</p>
+    <div class="info-grid" id="sakushaGrid"></div>
+
+    <h2 class="section-title" style="margin-top:2.2rem;">お茶（お詰め）とは</h2>
+    <p class="callout">「お詰めは？」と尋ねられたら、飲んだ抹茶を仕立てた茶舗の名前と、その茶舗がつけた茶銘（ブレンド名）を答えます。「お詰め」はもともと、抹茶を扱う茶商や茶舗そのものを指す言葉です（茶壺の口を封じる＝詰める役目をしていたことに由来するといわれます）。</p>
+    <div class="info-grid" id="otsumeGrid"></div>
+
+    <h2 class="section-title" style="margin-top:2.2rem;">代表的な茶銘（例）</h2>
+    <p class="callout">茶銘は、各茶舗が自分の店のブレンドにつける名前です。同じ茶銘でも茶舗によって中身は異なります。</p>
+    <div class="info-grid" id="chameiGrid"></div>
+
+    <h2 class="section-title" style="margin-top:2.2rem;">代表的な茶舗（例）</h2>
+    <p class="callout">京都・宇治を中心に、抹茶を扱う老舗の茶舗です。お稽古先やお茶会によって使うお茶は異なります。</p>
+    <div class="info-grid" id="chahoGrid"></div>
+  </section>
+
+</main>
+
+<footer>裏千家茶道 入門アプリ ｜ 一般的な作法の一例です</footer>
+
+<script>
+  // タブ切り替え
+  const tabButtons = document.querySelectorAll('#tabs button');
+  const sections = document.querySelectorAll('main section');
+  tabButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      tabButtons.forEach(b=>b.classList.remove('active'));
+      sections.forEach(s=>s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // 基本の流れ：タップで詳細を開閉
+  document.querySelectorAll('.flow-step').forEach(step=>{
+    function toggle(){
+      const nowOpen = step.classList.toggle('open');
+      step.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+    }
+    step.addEventListener('click', toggle);
+    step.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
+  // 問答練習データ
+  const mondoCards = [
+    {q:'正客「お棗のお塗りは？」', a:'亭主の返答例：「〇〇でございます」（塗師の名や塗りの種類を答える）'},
+    {q:'正客「お茶杓の御作は？」', a:'亭主の返答例：「〇〇でございます」（作者名。自作なら「自作でございます」）'},
+    {q:'正客「御銘は？」', a:'亭主の返答例：「〇〇と申します」（季節にちなんだ銘）'},
+    {q:'正客「お詰めは？」', a:'亭主の返答例：「〇〇園の〇〇でございます」（茶舗と茶銘）'},
+    {q:'拝見を終えたら、正客は何と言う？', a:'「結構なお道具を拝見させていただき、ありがとうございました」'}
+  ];
+  let idx = 0;
+  const cardWrap = document.getElementById('cardWrap');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressLabel = document.getElementById('progressLabel');
+
+  function renderCard(){
+    const item = mondoCards[idx];
+    cardWrap.innerHTML = `
+      <div class="card" id="flipCard">
+        <div class="tag">タップして答えを見る</div>
+        <div class="q">${item.q}</div>
+        <div class="a">${item.a}</div>
+      </div>`;
+    document.getElementById('flipCard').addEventListener('click', function(){
+      this.classList.toggle('flipped');
+    });
+    progressLabel.textContent = (idx+1) + ' / ' + mondoCards.length;
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === mondoCards.length - 1;
+  }
+  prevBtn.addEventListener('click', ()=>{ if(idx>0){idx--; renderCard();} });
+  nextBtn.addEventListener('click', ()=>{ if(idx<mondoCards.length-1){idx++; renderCard();} });
+  renderCard();
+
+  // 季節の銘（一例）
+  const meiData = [
+    {season:'1月', names:[['若水','わかみず'],['松の内','まつのうち'],['曙','あけぼの']]},
+    {season:'2月', names:[['東風','こち'],['梅日和','うめびより'],['残雪','ざんせつ']]},
+    {season:'3月', names:[['弥生','やよい'],['春霞','はるがすみ'],['雛の宴','ひなのえん']]},
+    {season:'4月', names:[['若草','わかくさ'],['花衣','はなごろも'],['春霞','はるがすみ']]},
+    {season:'5月', names:[['早苗','さなえ'],['薫風','くんぷう'],['杜若','かきつばた']]},
+    {season:'6月', names:[['紫陽花','あじさい'],['五月雨','さみだれ'],['青嵐','あおあらし']]},
+    {season:'7月', names:[['涼風','すずかぜ'],['夕立','ゆうだち'],['銀河','ぎんが']]},
+    {season:'8月', names:[['夕涼み','ゆうすずみ'],['蝉時雨','せみしぐれ'],['朝顔','あさがお']]},
+    {season:'9月', names:[['秋風','あきかぜ'],['野分','のわき'],['名月','めいげつ']]},
+    {season:'10月', names:[['紅葉','もみじ'],['菊日和','きくびより'],['小春','こはる']]},
+    {season:'11月', names:[['時雨','しぐれ'],['炉開き','ろびらき'],['初雪','はつゆき']]},
+    {season:'12月', names:[['雪の朝','ゆきのあさ'],['除夜','じょや'],['冬籠り','ふゆごもり']]}
+  ];
+  const meiGrid = document.getElementById('meiGrid');
+  meiData.forEach(m=>{
+    const div = document.createElement('div');
+    div.className='mei-card';
+    const namesHtml = m.names
+      .map(([n,k])=>`<ruby>${n}<rt>${k}</rt></ruby>`)
+      .join('・');
+    div.innerHTML = `<div class="season">${m.season}</div><div class="names">${namesHtml}</div>`;
+    meiGrid.appendChild(div);
+  });
+
+  // 棗の塗りの種類
+  const nuriData = [
+    {name:'真塗', kana:'しんぬり', desc:'黒漆を継ぎ目なく艶やかに仕上げた、最も格式高いとされる塗り。'},
+    {name:'溜塗', kana:'ためぬり', desc:'赤みを帯びた漆を重ねて塗り、下の色がうっすら透ける深みのある仕上がり。'},
+    {name:'掻合塗', kana:'かきあわせぬり', desc:'炭粉などを混ぜた漆を用いた、渋く落ち着いた風合いの塗り。'},
+    {name:'春慶塗', kana:'しゅんけいぬり', desc:'木地の木目を生かし、透明な漆をかけた明るい黄褐色の塗り。'},
+    {name:'曙塗', kana:'あけぼのぬり', desc:'赤から黒へと色がぼかされた、夜明けの空を思わせる塗り。'},
+    {name:'平塗', kana:'ひらぬり', desc:'装飾を抑えたすっきりとした塗り。稽古用によく使われる。'},
+    {name:'蒔絵', kana:'まきえ', desc:'漆で文様を描き、金や銀の粉を蒔いて絵柄を表す加飾の技法。'}
+  ];
+  const nuriGrid = document.getElementById('nuriGrid');
+  nuriData.forEach(n=>{
+    const div = document.createElement('div');
+    div.className='info-card';
+    div.innerHTML = `<div class="name">${n.name}<span class="kana2">${n.kana}</span></div><p class="desc">${n.desc}</p>`;
+    nuriGrid.appendChild(div);
+  });
+
+  // 茶杓の主な作者
+  const sakushaData = [
+    {name:'千利休', kana:'せんのりきゅう', desc:'安土桃山時代の茶人で、茶道を大成させた人物。竹の茶杓を茶道具として広めた祖ともいわれ、多くの銘品を残しました。'},
+    {name:'鵬雲斎', kana:'ほううんさい', desc:'裏千家15代家元（大宗匠）。数多くの茶杓を手がけ、現在も広く稽古や茶会で用いられています。'},
+    {name:'坐忘斎', kana:'ざぼうさい', desc:'裏千家16代家元、現在の御家元。鵬雲斎の長男として生まれ、大徳寺で参禅得度。平成14年（2002年）に家元を継承し、以来20年以上にわたり裏千家を率いています。国内外での茶道普及にも力を入れ、著書やテレビ番組の監修も多く手がけています。'},
+    {name:'業躰の先生', kana:'ぎょうてい', desc:'裏千家の稽古を専門に指導する先生方。ご自身で削られた茶杓を用いることもあります。'},
+    {name:'自作', kana:'じさく', desc:'お稽古の先生ご自身が削られたもの。「御作は？」に「自作でございます」と答えるのはよくあることです。'}
+  ];
+  const sakushaGrid = document.getElementById('sakushaGrid');
+  sakushaData.forEach(s=>{
+    const div = document.createElement('div');
+    div.className='info-card';
+    div.innerHTML = `<div class="name">${s.name}<span class="kana2">${s.kana}</span></div><p class="desc">${s.desc}</p>`;
+    sakushaGrid.appendChild(div);
+  });
+
+  // お詰めの意味
+  const otsumeData = [
+    {name:'お詰め（茶舗の意味）', kana:'おつめ', desc:'抹茶を仕立てて売る茶商・茶舗のこと。「拝見の問答」で尋ねられるのはこちらの意味です。'},
+    {name:'お詰め（客の意味）', kana:'おつめ', desc:'茶席で一番末席（出入口に近い席）に座る客のこと。正客とは反対の役割で、道具の片づけなどを手伝います。'}
+  ];
+  const otsumeGrid = document.getElementById('otsumeGrid');
+  otsumeData.forEach(o=>{
+    const div = document.createElement('div');
+    div.className='info-card';
+    div.innerHTML = `<div class="name">${o.name}<span class="kana2">${o.kana}</span></div><p class="desc">${o.desc}</p>`;
+    otsumeGrid.appendChild(div);
+  });
+
+  // 代表的な茶銘
+  const chameiData = [
+    {name:'初昔', kana:'はつむかし', desc:'新茶に近い、若々しく爽やかな味わいを表す銘として古くから使われています。'},
+    {name:'後昔', kana:'のちむかし', desc:'「初昔」と対になる銘で、少し熟成の進んだ、まろやかな味わいを表します。'},
+    {name:'行雲', kana:'こううん', desc:'空を行く雲にちなんだ銘で、さまざまな茶舗が自店のブレンドに用いています。'},
+    {name:'都路', kana:'みやこじ', desc:'京都にちなんだ銘で、上品でまろやかな味わいのお茶に付けられることが多い名前です。'}
+  ];
+  const chameiGrid = document.getElementById('chameiGrid');
+  chameiData.forEach(c=>{
+    const div = document.createElement('div');
+    div.className='info-card';
+    div.innerHTML = `<div class="name">${c.name}<span class="kana2">${c.kana}</span></div><p class="desc">${c.desc}</p>`;
+    chameiGrid.appendChild(div);
+  });
+
+  // 代表的な茶舗
+  const chahoData = [
+    {name:'柳桜園茶舗', kana:'りゅうおうえん', desc:'京都の老舗茶舗。裏千家のお茶会でもよく用いられることで知られています。'},
+    {name:'一保堂茶舗', kana:'いっぽどう', desc:'京都・寺町にある江戸時代創業の老舗。抹茶のほか煎茶・玉露も広く扱います。'},
+    {name:'丸久小山園', kana:'まるきゅうこやまえん', desc:'宇治にある抹茶の大手製造元。多くの流派・お稽古先で使われています。'},
+    {name:'上林春松本店', kana:'かんばやししゅんしょうほんてん', desc:'宇治で室町時代から続く、日本茶の歴史を代表する老舗茶商のひとつ。'}
+  ];
+  const chahoGrid = document.getElementById('chahoGrid');
+  chahoData.forEach(c=>{
+    const div = document.createElement('div');
+    div.className='info-card';
+    div.innerHTML = `<div class="name">${c.name}<span class="kana2">${c.kana}</span></div><p class="desc">${c.desc}</p>`;
+    chahoGrid.appendChild(div);
+  });
+</script>
+</body>
+</html>
